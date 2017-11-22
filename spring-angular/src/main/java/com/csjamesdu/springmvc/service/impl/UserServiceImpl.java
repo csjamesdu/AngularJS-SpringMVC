@@ -75,9 +75,9 @@ public class UserServiceImpl implements UserService{
  
     private static List<User> populateDummyUsers(){
         List<User> users = new ArrayList<User>();
-        users.add(new User(counter.incrementAndGet(),"Sam", "NY", "sam@abc.com"));
-        users.add(new User(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com"));
-        users.add(new User(counter.incrementAndGet(),"Kelly", "NEBRASKA", "kelly@abc.com"));
+        users.add(new User(counter.incrementAndGet(),"Sam", "Melbourne", "sam@abc.com"));
+        users.add(new User(counter.incrementAndGet(),"Tommy", "Syndney", "tomy@abc.com"));
+        users.add(new User(counter.incrementAndGet(),"Kelly", "Perth", "kelly@abc.com"));
         return users;
     }
  
