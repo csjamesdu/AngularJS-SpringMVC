@@ -2,13 +2,15 @@ package com.csjamesdu.springmvc.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.csjamesdu.springmvc.dao.UserDao;
 import com.csjamesdu.springmvc.model.User;
 import com.csjamesdu.springmvc.service.UserService;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.concurrent.atomic.AtomicLong;
  
  
@@ -17,26 +19,20 @@ public class UserServiceImpl implements UserService{
      
     private static final AtomicLong counter = new AtomicLong();
      
-    private static List<User> users;
      
-    static{
-        users= populateDummyUsers();
-    }
+//    static{
+//        users= populateDummyUsers();
+//    }
+	
+	@Autowired
+	UserDao userDao;
  
     public List<User> findAllUsers() {
-        return users;
-    }
-     
-    public User findById(long id) {
-        for(User user : users){
-            if(user.getId() == id){
-                return user;
-            }
-        }
-        return null;
+        return userDao.list();
     }
      
     public User findByName(String name) {
+    	List<User> users = userDao.list();
         for(User user : users){
             if(user.getUsername().equalsIgnoreCase(name)){
                 return user;
@@ -46,39 +42,31 @@ public class UserServiceImpl implements UserService{
     }
      
     public void saveUser(User user) {
-        user.setId(counter.incrementAndGet());
-        users.add(user);
+ //       user.setId(counter.incrementAndGet());
+        userDao.add(user);
     }
  
     public void updateUser(User user) {
-        int index = users.indexOf(user);
-        users.set(index, user);
+        userDao.update(user);
     }
  
     public void deleteUserById(long id) {
-         
-        for (Iterator<User> iterator = users.iterator(); iterator.hasNext(); ) {
-            User user = iterator.next();
-            if (user.getId() == id) {
-                iterator.remove();
-            }
-        }
+        userDao.delete(findById(id));
     }
  
     public boolean isUserExist(User user) {
         return findByName(user.getUsername())!=null;
     }
      
-    public void deleteAllUsers(){
-        users.clear();
-    }
+//    public void deleteAllUsers(){
+//        userDao.
+//    }
  
-    private static List<User> populateDummyUsers(){
-        List<User> users = new ArrayList<User>();
-        users.add(new User(counter.incrementAndGet(),"Sam", "Melbourne", "sam@abc.com"));
-        users.add(new User(counter.incrementAndGet(),"Tommy", "Syndney", "tomy@abc.com"));
-        users.add(new User(counter.incrementAndGet(),"Kelly", "Perth", "kelly@abc.com"));
-        return users;
-    }
- 
+
+
+	@Override
+	public User findById(long id) {
+		return userDao.loadById(id);
+	}
+
 }

@@ -20,7 +20,7 @@ public interface UserService {
  
     List<User> findAllUsers(); 
      
-    void deleteAllUsers();
+   // void deleteAllUsers();
      
     public boolean isUserExist(User user);
      

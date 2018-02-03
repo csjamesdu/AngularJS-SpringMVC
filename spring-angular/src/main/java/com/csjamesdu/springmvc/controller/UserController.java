@@ -119,7 +119,7 @@ public class UserController {
     public ResponseEntity<User> deleteAllUsers() {
         System.out.println("Deleting All Users");
   
-        userService.deleteAllUsers();
+        //userService.deleteAllUsers();
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
   

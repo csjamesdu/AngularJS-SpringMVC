@@ -1,15 +1,15 @@
-package com.csjamesdu.springmvc.configuration;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
-@EnableWebSecurity
-public class SecConfig {
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
-	}
-	
-}
+//package com.csjamesdu.springmvc.configuration;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//
+//@EnableWebSecurity
+//public class SecConfig {
+//	
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+//	}
+//	
+//}

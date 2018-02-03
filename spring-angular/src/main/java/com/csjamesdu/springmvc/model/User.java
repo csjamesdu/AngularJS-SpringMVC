@@ -5,30 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="User")
 public class User {
 	
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	
 	private String username;
 	private String address;
 	private String email;
 	
-	public User(){
-        id=0;
-    }
-     
-    public User(long id, String username, String address, String email){
-        this.id = id;
-        this.username = username;
-        this.address = address;
-        this.email = email;
-    }
     
 	public long getId() {
 		return id;
